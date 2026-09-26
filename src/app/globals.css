@@ -1,26 +1,217 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-page: #f5f9ff;
+    --bg-surface: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-soft: #94a3b8;
+    --brand-royal: #0062ff;
+    --brand-royal-dark: #0052cc;
+    --brand-royal-deep: #0043a8;
+    --border-light: #e2e8f0;
+    --border-blue: #dbeafe;
+    --pill-dark: #111827;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Template Signature Sky Wash Background */
+.template-sky-bg {
+  background-color: #f6faff;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(0, 98, 255, 0.05) 0px, transparent 50%),
+    radial-gradient(at 90% 15%, rgba(6, 182, 212, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(0, 98, 255, 0.04) 0px, transparent 50%);
 }
+
+/* Camplify Template Signature Elements */
+
+/* 1. Signature Royal Blue Stats Bar */
+.stats-banner-blue {
+  background-color: #0062ff;
+  color: #ffffff;
+  box-shadow: 0 12px 36px -6px rgba(0, 98, 255, 0.35);
+}
+
+/* 2. Signature Royal Blue Solid Footer */
+.footer-banner-blue {
+  background-color: #0052cc;
+  color: #ffffff;
+}
+
+/* 3. Dark Pill Button (as in Camplify 'Get Started' and 'Login') */
+.btn-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111827;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-pill-dark:hover {
+  background-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(17, 24, 39, 0.35);
+}
+
+/* 4. White / Light Pill Button */
+.btn-pill-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.btn-pill-white:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* 5. Royal Blue Pill Button */
+.btn-pill-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0062ff;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  box-shadow: 0 4px 16px rgba(0, 98, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-pill-blue:hover {
+  background-color: #0052cc;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(0, 98, 255, 0.4);
+}
+
+/* Clean White Card with Subtle Shadow */
+.card-template-white {
+  background-color: #ffffff;
+  border: 1px solid #e8eef6;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.25s ease;
+}
+
+.card-template-white:hover {
+  transform: translateY(-3px);
+  border-color: #c7dbfc;
+  box-shadow: 0 16px 36px -6px rgba(0, 98, 255, 0.1);
+}
+
+/* Hand-drawn accent brush underline */
+.accent-brush-underline {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.accent-brush-underline::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  bottom: -4px;
+  width: 108%;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 60 5, 180 3, 245 12' stroke='%23f97316' stroke-width='5' stroke-linecap='round' fill='none' opacity='0.75'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Slim scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Floating Badges Motion Animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 4.5s ease-in-out infinite 0.7s;
+}
+
+/* Infinite Tech & Growth Ticker Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
