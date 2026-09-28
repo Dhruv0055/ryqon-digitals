@@ -3,6 +3,8 @@
 import React from "react";
 import { Award, TrendingUp, Users, Star } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 interface StatItem {
   value: string;
   label: string;
@@ -39,12 +41,22 @@ const stats: StatItem[] = [
 
 export default function StatsBar() {
   return (
-    <section className="relative z-10 -mt-6 sm:-mt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="stats-banner-blue rounded-2xl sm:rounded-3xl py-6 sm:py-8 px-4 sm:px-10">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className="relative z-10 -mt-6 sm:-mt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+    >
+      <div className="stats-banner-blue rounded-2xl sm:rounded-3xl py-6 sm:py-8 px-4 sm:px-10 shadow-lg shadow-blue-900/10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-0 md:divide-x md:divide-white/20">
           {stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
               className="flex flex-col items-center text-center justify-center p-2.5 sm:p-4 md:px-6 rounded-xl bg-white/5 md:bg-transparent"
             >
               <div className="flex items-baseline gap-1.5 mb-1">
@@ -58,10 +70,10 @@ export default function StatsBar() {
               <p className="text-[10px] sm:text-xs text-blue-100/80 mt-0.5 leading-tight">
                 {stat.sublabel}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

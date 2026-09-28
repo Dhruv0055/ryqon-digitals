@@ -252,6 +252,8 @@ export default function ProjectCalculator() {
                   return (
                     <button
                       key={svc.id}
+                      type="button"
+                      suppressHydrationWarning
                       onClick={() => setSelectedService(svc.id)}
                       className={`text-left p-3.5 rounded-2xl border transition-all flex items-start gap-3 ${
                         isSelected
@@ -293,6 +295,8 @@ export default function ProjectCalculator() {
                   return (
                     <button
                       key={feat.id}
+                      type="button"
+                      suppressHydrationWarning
                       onClick={() => toggleFeature(feat.id)}
                       className={`text-left p-3 rounded-xl border transition-all flex items-start gap-3 ${
                         isChecked
@@ -334,6 +338,8 @@ export default function ProjectCalculator() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setTimelineUrgency("standard")}
                   className={`p-3.5 rounded-2xl border text-left transition-all ${
                     timelineUrgency === "standard"
@@ -350,6 +356,8 @@ export default function ProjectCalculator() {
                 </button>
 
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setTimelineUrgency("express")}
                   className={`p-3.5 rounded-2xl border text-left transition-all ${
                     timelineUrgency === "express"
@@ -451,6 +459,8 @@ export default function ProjectCalculator() {
                 </a>
 
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={populateContactForm}
                   className="btn-pill-white w-full py-2.5 text-xs justify-center gap-2"
                 >

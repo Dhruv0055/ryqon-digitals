@@ -14,17 +14,11 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { InstagramIcon, FacebookIcon, LinkedinIcon } from "./SocialIcons";
+import { TextEffect } from "@/components/core/text-effect";
 
 export default function ContactSection() {
   const rotatingWords = ["Grow Faster!", "Scale Higher!", "Convert More!", "Win Bigger!"];
   const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2400);
-    return () => clearInterval(interval);
-  }, [rotatingWords.length]);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -32,6 +26,22 @@ export default function ContactSection() {
     phone: "",
     projectDetails: "",
   });
+
+  const projectPlaceholders = [
+    "Tell us about your project...",
+    "e.g., Next.js web application sprint...",
+    "e.g., High-converting Meta & Google ad funnels...",
+    "e.g., Estimated scope, budget, and target timeline...",
+  ];
+  const [projectPlaceholderIndex, setProjectPlaceholderIndex] = useState(0);
+
+  useEffect(() => {
+    if (formData.projectDetails) return;
+    const interval = setInterval(() => {
+      setProjectPlaceholderIndex((prev) => (prev + 1) % projectPlaceholders.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [formData.projectDetails, projectPlaceholders.length]);
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -223,6 +233,8 @@ export default function ContactSection() {
                     <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => {
                       setSubmitted(false);
                       setFormData({ firstName: "", lastName: "", phone: "", projectDetails: "" });
@@ -242,30 +254,46 @@ export default function ContactSection() {
                     <label className="block text-xs uppercase tracking-wider font-semibold text-slate-600 mb-1.5">
                       First Name *
                     </label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      required
-                      value={formData.firstName}
-                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      placeholder="John"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
+                      />
+                      {!formData.firstName && (
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 text-sm text-slate-400 select-none">
+                          <TextEffect preset="fade-in-blur" speedReveal={1.1} speedSegment={0.3} per="char">
+                            John
+                          </TextEffect>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div>
                     <label className="block text-xs uppercase tracking-wider font-semibold text-slate-600 mb-1.5">
                       Last Name *
                     </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      required
-                      value={formData.lastName}
-                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      placeholder="Doe"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
+                      />
+                      {!formData.lastName && (
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 text-sm text-slate-400 select-none">
+                          <TextEffect preset="fade-in-blur" speedReveal={1.1} speedSegment={0.3} per="char">
+                            Doe
+                          </TextEffect>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -274,15 +302,23 @@ export default function ContactSection() {
                   <label className="block text-xs uppercase tracking-wider font-semibold text-slate-600 mb-1.5">
                     Phone Number *
                   </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="Add your number here"
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
-                  />
+                  <div className="relative">
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all"
+                    />
+                    {!formData.phone && (
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-4 text-sm text-slate-400 select-none">
+                        <TextEffect preset="fade-in-blur" speedReveal={1.1} speedSegment={0.3} per="word">
+                          Add your number here
+                        </TextEffect>
+                      </div>
+                    )}
+                  </div>
                   <p className="text-[10px] uppercase font-semibold text-slate-400 mt-1.5 tracking-wide italic">
                     * HINT: ADD YOUR NUMBER WITH COUNTRY CODE (E.G., +91)
                   </p>
@@ -293,20 +329,35 @@ export default function ContactSection() {
                   <label className="block text-xs uppercase tracking-wider font-semibold text-slate-600 mb-1.5">
                     Project Details *
                   </label>
-                  <textarea
-                    name="projectDetails"
-                    required
-                    rows={4}
-                    value={formData.projectDetails}
-                    onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
-                    placeholder="Tell us about your project..."
-                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all resize-none"
-                  />
+                  <div className="relative">
+                    <textarea
+                      name="projectDetails"
+                      required
+                      rows={4}
+                      value={formData.projectDetails}
+                      onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-2 focus:ring-blue-100 transition-all resize-none"
+                    />
+                    {!formData.projectDetails && (
+                      <div className="pointer-events-none absolute top-3.5 left-4 text-sm text-slate-400 select-none">
+                        <TextEffect
+                          key={projectPlaceholderIndex}
+                          preset="fade-in-blur"
+                          speedReveal={1.1}
+                          speedSegment={0.3}
+                          per="word"
+                        >
+                          {projectPlaceholders[projectPlaceholderIndex]}
+                        </TextEffect>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Send Message Button */}
                 <button
                   type="submit"
+                  suppressHydrationWarning
                   disabled={isSubmitting}
                   className="w-full py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-lg shadow-blue-600/25 transition-all duration-200 cursor-pointer disabled:opacity-70 mt-2"
                 >

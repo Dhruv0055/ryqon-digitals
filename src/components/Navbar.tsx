@@ -96,6 +96,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-slate-700 hover:text-slate-900"
             aria-label="Open menu"

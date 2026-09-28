@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Rocket, Users, Building2, CheckCircle2, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function PartnershipSection() {
   const audiences = [
@@ -37,7 +38,13 @@ export default function PartnershipSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mx-auto text-center mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             <span>Partnership</span>
@@ -48,7 +55,7 @@ export default function PartnershipSection() {
           <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             Whether you&apos;re validating an MVP, upgrading your core software, or launching customer acquisition funnels, we adapt to your growth stage.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
@@ -57,9 +64,14 @@ export default function PartnershipSection() {
             {audiences.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div
+                <motion.div
                   key={idx}
-                  className="bg-white rounded-3xl border border-blue-100 p-6 sm:p-7 shadow-xs hover:border-blue-300 transition-all flex items-start gap-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="bg-white rounded-3xl border border-blue-100 p-6 sm:p-7 shadow-xs hover:border-blue-300 hover:shadow-md transition-all flex items-start gap-5 cursor-default"
                 >
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${item.colorClass}`}>
                     <Icon className="w-6 h-6" />
@@ -72,13 +84,19 @@ export default function PartnershipSection() {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
 
           {/* Right Checklist Box (5 cols) */}
-          <div className="lg:col-span-5 bg-white rounded-3xl border border-blue-100 p-7 sm:p-8 shadow-sm flex flex-col justify-between">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.55, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5 bg-white rounded-3xl border border-blue-100 p-7 sm:p-8 shadow-sm flex flex-col justify-between"
+          >
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-4">
                 <span>Compatibility</span>
@@ -105,7 +123,7 @@ export default function PartnershipSection() {
                 <span>Check Project Fit</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

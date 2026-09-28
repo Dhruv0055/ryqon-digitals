@@ -214,4 +214,15 @@
   animation-play-state: paused;
 }
 
+/* Hide Next.js Development Indicator */
+[data-nextjs-dev-tools-button],
+[data-nextjs-indicator],
+nextjs-portal [data-nextjs-dev-tools-button],
+nextjs-portal [data-nextjs-indicator] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
 

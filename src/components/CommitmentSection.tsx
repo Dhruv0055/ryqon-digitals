@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Check, Clock, MessageSquare, Compass, ShieldCheck, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CommitmentSection() {
   const [activeView, setActiveView] = useState<"commitments" | "comparison">("commitments");
@@ -38,7 +39,13 @@ export default function CommitmentSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header with Original Data */}
-        <div className="max-w-2xl mx-auto text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mx-auto text-center mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             <span>Our Commitment</span>
@@ -49,12 +56,20 @@ export default function CommitmentSection() {
           <p className="text-sm sm:text-base font-normal text-slate-600 leading-relaxed">
             Working with Ryqon Digital Solutions means clarity, communication, and consistency from day one.
           </p>
-        </div>
+        </motion.div>
 
         {/* View Switcher */}
-        <div className="flex justify-center mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex justify-center mb-10"
+        >
           <div className="inline-flex p-1 rounded-full bg-slate-100 border border-slate-200">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("commitments")}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 activeView === "commitments"
@@ -65,6 +80,8 @@ export default function CommitmentSection() {
               Our Commitments
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveView("comparison")}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 activeView === "comparison"
@@ -75,14 +92,22 @@ export default function CommitmentSection() {
               How We Compare
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {activeView === "commitments" ? (
           <div className="grid grid-cols-2 gap-3 sm:gap-5 mb-8">
             {commitments.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div key={idx} className="card-template-white p-3.5 sm:p-7 rounded-2xl sm:rounded-3xl flex flex-col justify-between">
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="card-template-white p-3.5 sm:p-7 rounded-2xl sm:rounded-3xl flex flex-col justify-between"
+                >
                   <div>
                     <div className="flex items-center justify-between mb-2.5 sm:mb-4">
                       <div className="h-8 w-8 sm:h-11 sm:w-11 rounded-xl sm:rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0">
@@ -99,12 +124,17 @@ export default function CommitmentSection() {
                       {item.desc}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         ) : (
-          <div className="bg-white rounded-3xl border border-blue-100 shadow-sm overflow-hidden mb-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white rounded-3xl border border-blue-100 shadow-sm overflow-hidden mb-8"
+          >
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead className="bg-blue-50/60 text-[11px] uppercase tracking-wider text-slate-600 border-b border-blue-100">
@@ -151,7 +181,7 @@ export default function CommitmentSection() {
                 </tbody>
               </table>
             </div>
-          </div>
+          </motion.div>
         )}
 
       </div>

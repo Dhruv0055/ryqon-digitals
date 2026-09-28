@@ -10,6 +10,7 @@ import {
   Sparkles,
   TrendingUp
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export interface Project {
   id: string;
@@ -158,7 +159,13 @@ export default function PortfolioSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-2xl mx-auto text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mx-auto text-center mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             <span>Proven Case Studies</span>
@@ -169,10 +176,16 @@ export default function PortfolioSection() {
           <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             Real products and high-ROI digital marketing campaigns engineered for scale.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+        >
           {[
             { id: "all", label: "All Engagements" },
             { id: "ecommerce", label: "E-Commerce" },
@@ -181,6 +194,8 @@ export default function PortfolioSection() {
           ].map((tab) => (
             <button
               key={tab.id}
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveFilter(tab.id)}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 activeFilter === tab.id
@@ -191,13 +206,18 @@ export default function PortfolioSection() {
               {tab.label}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
+          {filteredProjects.map((project, idx) => (
+            <motion.div
               key={project.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.45, delay: idx * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
               onClick={() => setSelectedProject(project)}
               className="card-template-white overflow-hidden flex flex-col justify-between cursor-pointer group"
             >
@@ -263,7 +283,7 @@ export default function PortfolioSection() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -275,6 +295,9 @@ export default function PortfolioSection() {
           <div className="relative w-full max-w-2xl bg-white rounded-3xl border border-blue-100 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
             
             <button
+              type="button"
+              suppressHydrationWarning
+              aria-label="Close modal"
               onClick={() => setSelectedProject(null)}
               className="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
             >
@@ -371,6 +394,8 @@ export default function PortfolioSection() {
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setSelectedProject(null)}
                 className="btn-pill-white py-2.5 px-5 text-xs"
               >

@@ -71,7 +71,13 @@ export default function ProcessRoadmap() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header with Original Data */}
-        <div className="max-w-2xl mx-auto text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-2xl mx-auto text-center mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             <span>Workflow</span>
@@ -82,16 +88,24 @@ export default function ProcessRoadmap() {
           <p className="text-sm sm:text-base font-normal text-slate-600 leading-relaxed">
             Our structured 4-step engineering and growth model ensures momentum, transparency, and dependable outcomes.
           </p>
-        </div>
+        </motion.div>
 
         {/* Phase Selector Tabs */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8"
+        >
           {steps.map((step, idx) => {
             const isCurrent = activeStep === idx;
             const Icon = step.icon;
             return (
               <button
                 key={step.number}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setActiveStep(idx)}
                 className={`p-4 rounded-2xl border text-left transition-all ${
                   isCurrent
@@ -115,10 +129,16 @@ export default function ProcessRoadmap() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Active Phase Card with smooth step transition */}
-        <div className="bg-white rounded-3xl border border-blue-100 p-6 sm:p-10 shadow-sm overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.5, delay: 0.12, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="bg-white rounded-3xl border border-blue-100 p-6 sm:p-10 shadow-sm overflow-hidden"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -179,6 +199,8 @@ export default function ProcessRoadmap() {
 
                 <div className="pt-2">
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)}
                     className="btn-pill-dark w-full py-2.5 text-xs justify-center gap-2"
                   >
@@ -189,7 +211,7 @@ export default function ProcessRoadmap() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
       </div>
     </section>

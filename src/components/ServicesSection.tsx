@@ -21,7 +21,6 @@ import {
   Code2,
   Layers
 } from "lucide-react";
-import { ProgressiveBlur } from "@/components/core/progressive-blur";
 
 interface ServiceItem {
   id: string;
@@ -50,10 +49,11 @@ function ServiceCard({ svc, onSelect }: { svc: ServiceItem; onSelect: () => void
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       whileHover={{ y: -6, transition: { duration: 0.2 } }}
       onClick={onSelect}
       onMouseEnter={() => setIsHover(true)}
@@ -83,18 +83,6 @@ function ServiceCard({ svc, onSelect }: { svc: ServiceItem; onSelect: () => void
           {svc.badge}
         </span>
       </div>
-
-      {/* Progressive Blur Layer - Only blurs lower text area, upper side is NOT blurred */}
-      <ProgressiveBlur
-        className="pointer-events-none absolute bottom-0 left-0 h-[52%] w-full z-10"
-        blurIntensity={0.45}
-        animate={isHover ? "visible" : "hidden"}
-        variants={{
-          hidden: { opacity: 0.35 },
-          visible: { opacity: 1 },
-        }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      />
 
       {/* Motion Bottom Details Layer */}
       <motion.div
@@ -365,7 +353,13 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-3xl mx-auto text-center mb-14"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
             <span>Full-Spectrum Digital Capabilities</span>
@@ -376,12 +370,20 @@ export default function ServicesSection() {
           <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             From high-converting ad funnels to modern full-stack web and mobile apps, we deliver end-to-end digital solutions that convert visitors into revenue.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tactile Pill Filter Tabs - Scrollable on small mobile */}
-        <div className="flex justify-center mb-10 sm:mb-14 overflow-x-auto no-scrollbar px-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex justify-center mb-10 sm:mb-14 overflow-x-auto no-scrollbar px-2"
+        >
           <div className="inline-flex p-1 sm:p-1.5 rounded-full bg-white border border-blue-200 shadow-sm gap-1 shrink-0">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveTab("all")}
               className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
                 activeTab === "all"
@@ -394,6 +396,8 @@ export default function ServicesSection() {
             </button>
 
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveTab("marketing")}
               className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
                 activeTab === "marketing"
@@ -406,6 +410,8 @@ export default function ServicesSection() {
             </button>
 
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setActiveTab("engineering")}
               className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer ${
                 activeTab === "engineering"
@@ -417,7 +423,7 @@ export default function ServicesSection() {
               <span>Development (4)</span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Render Cards Grid with Progressive Blur Hover & Themed Images */}
         <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -447,6 +453,9 @@ export default function ServicesSection() {
             >
             
             <button
+              type="button"
+              suppressHydrationWarning
+              aria-label="Close modal"
               onClick={() => setSelectedService(null)}
               className="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             >

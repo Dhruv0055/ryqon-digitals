@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, ChevronUp, MessageSquare } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FaqItem {
   id: string;
@@ -69,7 +70,13 @@ export default function FaqSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column matching Camplify template */}
-          <div className="lg:col-span-5 text-left">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5 text-left"
+          >
             
             {/* Sketch doodle lines */}
             <div className="flex items-center gap-1 mb-2 text-blue-600">
@@ -96,15 +103,23 @@ export default function FaqSection() {
               <ArrowRight className="w-4 h-4" />
             </Link>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Clean list of questions with -> arrows */}
-          <div className="lg:col-span-7 divide-y divide-slate-100">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-7 divide-y divide-slate-100"
+          >
             {faqs.map((faq) => {
               const isOpen = openId === faq.id;
               return (
                 <div key={faq.id} className="py-4">
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => toggleFaq(faq.id)}
                     className="w-full flex items-center justify-between text-left gap-4 py-2 group"
                   >
@@ -130,7 +145,7 @@ export default function FaqSection() {
                 </div>
               );
             })}
-          </div>
+          </motion.div>
 
         </div>
       </div>

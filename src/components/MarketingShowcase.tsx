@@ -145,6 +145,8 @@ export default function MarketingShowcase() {
 
           <div className="flex items-center gap-2">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={prevSlide}
               aria-label="Previous Slide"
               className="p-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors shadow-sm"
@@ -152,6 +154,8 @@ export default function MarketingShowcase() {
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={nextSlide}
               aria-label="Next Slide"
               className="p-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors shadow-sm"
@@ -168,6 +172,8 @@ export default function MarketingShowcase() {
             return (
               <button
                 key={s.id}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setCurrentIndex(idx)}
                 className={`p-3 rounded-xl text-left border transition-all duration-300 ${
                   isActive

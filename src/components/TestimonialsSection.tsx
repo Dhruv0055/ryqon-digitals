@@ -54,7 +54,13 @@ export default function TestimonialsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header with Title and Arrow Controls matching Camplify template */}
-        <div className="flex items-end justify-between mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex items-end justify-between mb-12"
+        >
           <div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
               What Customers Are <br />
@@ -65,6 +71,8 @@ export default function TestimonialsSection() {
           {/* Navigation Arrows ← → matching Camplify */}
           <div className="flex items-center gap-2">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={prevSlide}
               className="w-11 h-11 rounded-full bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-600 text-slate-700 flex items-center justify-center shadow-xs transition-colors"
               aria-label="Previous Reviews"
@@ -72,6 +80,8 @@ export default function TestimonialsSection() {
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={nextSlide}
               className="w-11 h-11 rounded-full bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-600 text-slate-700 flex items-center justify-center shadow-xs transition-colors"
               aria-label="Next Reviews"
@@ -79,18 +89,24 @@ export default function TestimonialsSection() {
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* 2-Card Layout matching template with smooth slide motion */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -25 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 25 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -25 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
             {[testimonials[currentIndex], testimonials[currentIndex + 1]].map((t, idx) => (
               <div
                 key={idx}
@@ -128,6 +144,7 @@ export default function TestimonialsSection() {
             ))}
           </motion.div>
         </AnimatePresence>
+        </motion.div>
 
       </div>
     </section>

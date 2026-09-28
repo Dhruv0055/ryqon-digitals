@@ -31,6 +31,9 @@ export default function WhatsAppButton() {
               <p className="text-[10px] text-zinc-400 font-normal">Replies within 2 hours</p>
             </div>
             <button
+              type="button"
+              suppressHydrationWarning
+              aria-label="Close WhatsApp chat"
               onClick={() => setIsOpen(false)}
               className="p-1 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
             >
@@ -48,6 +51,8 @@ export default function WhatsAppButton() {
               {presets.map((item, idx) => (
                 <button
                   key={idx}
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => handleSend(item.text)}
                   className="w-full text-left p-2.5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 text-xs font-normal transition-all text-zinc-800 dark:text-zinc-200"
                 >
@@ -68,6 +73,8 @@ export default function WhatsAppButton() {
                 className="flex-1 px-3 py-2 text-xs rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-zinc-400"
               />
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => {
                   if (customMsg.trim()) handleSend(customMsg);
                 }}
@@ -83,6 +90,8 @@ export default function WhatsAppButton() {
 
       {/* Floating Trigger */}
       <button
+        type="button"
+        suppressHydrationWarning
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Direct WhatsApp Message"
         className="flex items-center justify-center h-12 w-12 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 border border-zinc-700 dark:border-zinc-200"

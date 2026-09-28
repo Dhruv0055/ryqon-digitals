@@ -12,6 +12,8 @@ import {
   Zap 
 } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 export default function TechTicker() {
   const tickerItems = [
     { label: "Next.js 15 App Architecture", icon: Layers, tag: "Web" },
@@ -27,7 +29,13 @@ export default function TechTicker() {
   const duplicatedItems = [...tickerItems, ...tickerItems];
 
   return (
-    <div className="py-6 bg-white/70 backdrop-blur-xs border-y border-blue-100/60 overflow-hidden select-none">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className="py-6 bg-white/70 backdrop-blur-xs border-y border-blue-100/60 overflow-hidden select-none"
+    >
       <div className="animate-marquee flex items-center gap-4">
         {duplicatedItems.map((item, idx) => {
           const Icon = item.icon;
@@ -45,6 +53,6 @@ export default function TechTicker() {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
