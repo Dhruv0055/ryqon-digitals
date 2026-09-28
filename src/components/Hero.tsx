@@ -153,39 +153,41 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="lg:col-span-5 flex justify-center lg:justify-end relative px-2 sm:px-0"
+            className="lg:col-span-5 flex justify-center lg:justify-end px-2 sm:px-0"
           >
-            
-            {/* Floating Badge Left with smooth floating motion */}
-            <div className="flex absolute -left-2 sm:-left-6 top-10 sm:top-20 z-20 bg-white/95 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl border border-blue-100 items-center gap-2 sm:gap-3 animate-float-gentle">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
-                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
-              </div>
-              <div>
-                <p className="text-[10px] sm:text-xs text-slate-400 font-medium leading-tight">Verified Growth</p>
-                <p className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">+3.8x Avg ROAS</p>
-              </div>
-            </div>
+            {/* Phone & Floating Badges Anchor Wrapper */}
+            <div className="relative mx-auto lg:mr-0 w-fit">
 
-            {/* Floating Badge Right with smooth floating motion */}
-            <div className="flex absolute -right-2 sm:-right-4 bottom-8 sm:bottom-14 z-20 bg-white/95 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl border border-blue-100 items-center gap-2 sm:gap-3 animate-float-delayed">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
+              {/* Floating Badge Left - Positioned cleanly on top-left shoulder without covering inner text */}
+              <div className="flex absolute -left-2 sm:-left-8 -top-4 sm:-top-5 z-20 bg-white/95 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-xl border border-blue-100 items-center gap-2 sm:gap-2.5 animate-float-gentle pointer-events-none select-none">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                  <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-400 font-medium leading-tight">Verified Growth</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">+3.8x Avg ROAS</p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] sm:text-xs text-slate-400 font-medium leading-tight">Speed &amp; Performance</p>
-                <p className="text-xs sm:text-sm font-bold text-emerald-600 leading-tight">Sub-Second Load</p>
+
+              {/* Floating Badge Right - Positioned cleanly at bottom-right below the button without covering inner text */}
+              <div className="flex absolute -right-2 sm:-right-8 -bottom-5 sm:-bottom-5 z-20 bg-white/95 backdrop-blur-sm px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-xl border border-blue-100 items-center gap-2 sm:gap-2.5 animate-float-delayed pointer-events-none select-none">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                  <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-400 font-medium leading-tight">Speed &amp; Performance</p>
+                  <p className="text-xs sm:text-sm font-bold text-emerald-600 leading-tight">Sub-Second Load</p>
+                </div>
               </div>
-            </div>
 
-            {/* Device Frame */}
-            <div className="relative w-full max-w-[290px] sm:max-w-[340px] bg-slate-900 rounded-[2.2rem] sm:rounded-[2.5rem] p-2.5 sm:p-3 shadow-2xl border-4 border-slate-800">
-              
-              {/* Speaker */}
-              <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-800 rounded-full z-30" />
+              {/* Device Frame */}
+              <div className="relative w-full max-w-[290px] sm:max-w-[340px] bg-slate-900 rounded-[2.2rem] sm:rounded-[2.5rem] p-2.5 sm:p-3 shadow-2xl border-4 border-slate-800">
+                
+                {/* Speaker */}
+                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-800 rounded-full z-30" />
 
-              {/* Screen */}
-              <div className="bg-white rounded-[2rem] pt-8 pb-6 px-4 overflow-hidden">
+                {/* Screen */}
+                <div className="bg-white rounded-[2rem] pt-8 pb-7 px-4 overflow-hidden">
                 
                 <div className="flex items-center justify-between mb-4 px-1">
                   <div>
@@ -275,7 +277,9 @@ export default function Hero() {
               </div>
             </div>
 
-          </motion.div>
+          </div>
+
+        </motion.div>
 
         </div>
       </div>
